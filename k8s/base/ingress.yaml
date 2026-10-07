@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: proptech-whatsapp-webhook
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 1m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "10"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "10"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - webhook.example.com
+      secretName: proptech-webhook-tls
+  rules:
+    - host: webhook.example.com
+      http:
+        paths:
+          - path: /webhooks/whatsapp
+            pathType: Exact
+            backend:
+              service:
+                name: proptech-api
+                port:
+                  name: http

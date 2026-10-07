@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proptech-config
+data:
+  NODE_ENV: production
+  HOST: 0.0.0.0
+  PORT: "3000"
+  UAE_PASS_ISSUER: https://id.uaepass.ae

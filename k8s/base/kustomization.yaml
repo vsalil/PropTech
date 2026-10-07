@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: proptech
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - api-deployment.yaml
+  - api-service.yaml
+  - api-pdb.yaml
+  - outbox-deployment.yaml
+  - migration-job.yaml
+  - ingress.yaml
+
+images:
+  - name: proptech-platform
+    newName: proptech-platform
+    newTag: "0.1.0"
